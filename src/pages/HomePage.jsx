@@ -2,13 +2,12 @@ import Post from '../components/Post';
 
 function HomePage() {
   const samplePost = {
-    author: 'John Doe',
-    image: 'path-to-image.jpg',
-    text: 'This is a sample post text.',
+    author: 'Zyziek055',
+    image: '../../example-post-photo.jpg',
+    text: 'Oceńcie czy kotek grzecznie siedzi',
     rating: 4,
     comments: [
-      { author: 'Jane Smith', text: 'Great post!' },
-      { author: 'Michael Lee', text: 'I agree, very informative.' },
+      { author: 'Oliwia', text: 'Super grzecznie' },
     ],
   };
 

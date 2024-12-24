@@ -20,7 +20,7 @@ function Post({ author, image, text, initialRating, comments}) {
   return (
     <div className="bg-white p-4 rounded shadow-md mb-6">
       <div className="text-lg font-bold">{author}</div>
-      {image && <img src={image} alt="Post" className="w-full h-auto rounded mt-2" />}
+      {image && <img src={image} alt="Post" className="w-full max-h-64 object-contain rounded mt-2" />}
       <p className="mt-2">{text}</p>
       <div className="mt-4 flex items-center">
         <div className="mr-2">Rating:</div>
