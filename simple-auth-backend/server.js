@@ -3,12 +3,16 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const cors = require("cors");
 
 const app = express();
 const PORT = 3000;
 
 // Klucz tajny do podpisywania JWT (w rzeczywistych projektach powinien być przechowywany w .env)
 const SECRET_KEY = "mysecretkey";
+
+/// Używamy CORS, aby zezwolić na zapytania z innych źródeł
+app.use(cors());  // Dodajemy middleware CORS
 
 // Middleware do obsługi danych JSON
 app.use(bodyParser.json());

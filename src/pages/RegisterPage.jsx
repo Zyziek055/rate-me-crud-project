@@ -3,10 +3,44 @@ import React, { useState } from "react";
 function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
+  const [error, setError] = useState("");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("Register attempt:", {username, password});
+
+    // Sprawdzenie, czy hasła się zgadzają
+    if (password !== passwordRepeat) {
+      setError("Hasła się nie zgadzają");
+      return; // Zatrzymujemy dalsze przetwarzanie formularza
+    }
+    
+    try {
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      if (!response.ok) {
+        const data = await response.json();
+        if (data.error && data.error === "Username already in use") {
+          setError("Username already in use");
+        } else {
+          setError("BRegistration failed");
+        }
+        return;
+      }
+      
+      const data = await response.json();
+      console.log(data);
+    } catch (e) {
+      console.error("Registration error:", e);
+    }
+  
+    console.log("Register attempt:", { username, password });
   };
 
   return (
@@ -41,10 +75,13 @@ function RegisterPage() {
           <label className="block text-gray-700">Powtórz Haslo</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={passwordRepeat}
+            onChange={(e) => setPasswordRepeat(e.target.value)}
             className="w-full px-3 py-2 border rounded"
           />
+
+          {error && <div className="text-red-500 text-sm mb-4">{error}</div>} {/* Wyświetlanie błędu */}
+
           <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
