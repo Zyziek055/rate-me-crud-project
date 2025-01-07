@@ -29,7 +29,7 @@ function RegisterPage() {
         if (data.error && data.error === "Username already in use") {
           setError("Username already in use");
         } else {
-          setError("BRegistration failed");
+          setError("Registration failed");
         }
         return;
       }
@@ -80,8 +80,7 @@ function RegisterPage() {
             className="w-full px-3 py-2 border rounded"
           />
 
-          {error && <div className="text-red-500 text-sm mb-4">{error}</div>} {/* Wyświetlanie błędu */}
-
+          {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
           <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"

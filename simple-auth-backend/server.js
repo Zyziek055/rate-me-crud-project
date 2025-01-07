@@ -80,7 +80,7 @@ app.post("/login", async (req, res) => {
   // Porównaj hasło z hash
   const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
   if (!isPasswordValid) {
-    return res.status(401).json({ error: "Invalid eusername or password" });
+    return res.status(401).json({ error: "Invalid username or password" });
   }
 
   // Generuj token JWT
